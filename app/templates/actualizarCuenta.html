@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container d-flex justify-content-center  align-items-center">
+    
+    <form action="{% url 'actualizar' %}" method="post">
+
+        <h1>Actualizar Cuenta</h1>
+
+        {% csrf_token %}
+
+        {{ actualizarform.as_p }}
+
+        <button class="btn btn-outline-danger">
+            Actualizar
+        </button>
+
+        <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+            Ir a Inicio
+        </a>        
+
+    </form>
+
+</div>
+
+{% endblock %}

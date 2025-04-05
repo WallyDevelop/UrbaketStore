@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-4">
+                <div class="card-header">
+                  Resumen de la Orden
+                </div>
+                <div class="card-body">
+                {% for product in cart_products %}
+                    <img src="{{product.imagen.url}}" alt="" style="height: auto; width: 150px;">
+                    {{product.nombre}}: 
+                    ${{product.precio}}
+                    <br>
+                    <strong><small>Cantidad:</small></strong> {% for key, value in quantities.items %}  
+                    {% if key == product.id|slugify %}
+                    {{ value }}
+                    {% endif %}
+                  {% endfor %}<br><br>
+                {% endfor %} 
+                <br><br>
+                <strong>Total: {{totals}} $</strong>
+                <br><br>
+                <a href="{% url 'cart_detail' %}" class="btn btn-primary">Actualizar Articulos</a>
+                </div>
+              </div>
+              <br>
+              <div class="card mb-4">
+                <h5 class="card-header">Informacion de Entrega</h5>
+                <div class="card-body">
+                  {% for dir in usuario%}
+                    <strong>{{dir.nombre}}  --- {{dir.telefono}}<br></strong>
+                    {{dir.calle}} <br>
+                    {{dir.municipio_departamento}} <br>
+                    {{dir.info_adicional}} <br>
+                  {% endfor %}
+                </div>
+              </div>
+              <a href="" class="mb-3 btn btn-success">Proceder al pago</a>
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock %}

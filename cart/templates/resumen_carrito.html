@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container"> 
+    <div class="row mt-4">
+        <h1>Carrito de Compras</h1>
+        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9 col-sm-9">
+            <div class="row">
+            {% if cart_products %}
+                {% for product in cart_products %}
+                
+                <div class="card text-center mb-3">
+                    <div class="card-header">
+                      <h5>Producto</h5>
+                    </div>
+                    <div class="card-body d-flex text-start">
+                        <section class="">
+                            <h5 class="card-title">{{product.nombre}}</h5>
+                            <img src="{{product.imagen.url}}" alt="" style="height: auto; width: 150px;">
+                        </section>
+                        <section class="ms-5 p-4">
+                            <h3 class="card-text mb-2"> Precio: ${{product.precio}}</h3>
+                            <h3 class="card-text mb-2"> Cantidad: 
+                                {% for key, value in quantities.items %}
+                                    {% if key == product.id|slugify %}
+                                    <input type="text" value="{{ value }}" style="width: 50px;" class="text-center">
+                                    {% endif %}
+                                {% endfor %}
+                            </h3>
+                            <a href="{% url 'inicio' %} " class="btn btn-outline-primary">Volver a la pagina de compras</a>
+                            <br>
+                            <button type="button" data-index="{{product.id}}" class="btn btn-outline-warning mt-2 update_cart" >Actualizar</button>
+                            <button type="button" data-index="{{product.id}}" class="btn btn-outline-danger mt-2 delete_cart">Eliminar</button>
+                        </section>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="fs-5">No Hay Productos En Tu Carrito</p>
+                <a href="{% url 'inicio' %}">Volver a la pagina de compras</a>
+            {% endif %}
+                
+            </div>
+        </div>
+        {% if cart_products %}
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 col-sm-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5>Subtotal</h5>
+                    <p class="fs-5">Precio</p> 
+                    <p>${{ totals }}</p>
+                    <a href="{% url 'checkout' %}" class="btn btn-outline-primary">Comprar</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>    
+</div>
+
+<script>
+
+$(document).on('click', '.delete_cart', function(e){
+    e.preventDefault();
+    var product_id = $(this).data('index'); 
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'cart_delete' %}",
+        data: {
+            product_id: product_id,
+            csrfmiddlewaretoken: '{{csrf_token}}',
+            action: 'post'
+        },
+        success: function(json){
+            // Recargar la página o actualizar la vista del carrito
+            location.reload();
+        },
+        error: function(xhr, errmsg, err){
+            console.log(errmsg);
+        }
+    });
+});
+
+</script>
+
+{% endblock %}

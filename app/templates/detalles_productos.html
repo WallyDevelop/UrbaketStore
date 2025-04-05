@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="col mt-4">
+        <div class="d-flex">
+            <div class="col-sm-12 col-md-4 col-xl-4 mt-5">
+                <img src="{{detallePro.imagen.url}}" alt="{{detallePro.nombre}}" style="height: auto; width: 250px;">
+            </div>
+            <div class="col-sm-12 col-md-4 col-xl-4 ">
+                <h3>{{detallePro.nombre}}</h3>
+                <hr>
+                <h5>Descripción del producto</h5>
+                <p>{{detallePro.descripcion}}</p>
+            </div>
+            <div class="col-sm-12 col-md-4 col-xl-4 d-flex justify-content-center text-center">
+                <div class="card text-center mb-3" style="width: 18rem;">
+                    <h3 class="mt-2">${{detallePro.precio}}</h3>
+                    <div class="card-body  ">
+                        <p>Direccion del cliente</p>
+                        <p>Cantidad Disponible: {{detallePro.unid_Stock}}</p>
+                        <label for="" class="mb-2"><strong>Ingresar Cantidad a Comprar:</strong></label>
+                        <input type="text" class="input-text mb-3 text-center" id="qty-cart" style="width: 50px;">
+                        <div class="d-flex flex-column mb-3 align-items-center">
+                            <button type="button" value="{{detallePro.id}}" class="btn btn-danger " id="agregarCart">Agregar al carrito</a> </button>
+                        </div>
+                        <a href="{% url 'cart_detail' %}" class="btn btn-primary mb-3">Ir al Carrito</a>
+                        <div>
+                            <p class="d-flex align-items-start"><b>Vendido por:</b></p>
+                            <p>{{detallePro.vendido_por}}</p>
+                            <p class="d-flex align-items-star"><b>Entragado por:</b></p>
+                            <p>{{detallePro.enviado_por}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+$(document).on('click', '#agregarCart', function(e){
+    e.preventDefault();
+    $.ajax({
+        type:'POST',
+        url: "{% url 'cart_add' %}",
+        data:{
+            product_id: $('#agregarCart').val(),
+            product_qty: $('#qty-cart').val(),
+            csrfmiddlewaretoken: '{{csrf_token}}',
+            action: 'post'
+        },
+        success: function(json){
+            //console.log(JSON)
+            document.getElementById('cart_quantity').textContent = json.qty
+        },
+
+        error: function(xhr, errmsg, err){
+            
+        }
+
+    });
+
+
+})
+
+
+</script>
+
+
+{% endblock %}

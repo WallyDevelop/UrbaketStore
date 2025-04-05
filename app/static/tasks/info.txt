@@ -1,0 +1,54 @@
+Create Database
+ - Cliente - Done
+ - Producto - Done
+ - Vendedor - Done
+ - Ordenes - Done
+ - Categorias - Done
+ - Vendedor - Later
+ - Distribuidor - Done
+
+Make it possible to 
+ - Register - Done
+ - login - Done
+ - logout - Done
+ - Edit Account Profile - 
+
+Make it possible to
+ - Add productos in Admin - Done
+ - Edit productos Admin - Done
+ - delecte productos Admin - Done
+
+Make it possible to
+ - See the product image - Done
+ - company logo - Done
+ - see the product page - Done
+ - see customer profile - Done
+
+
+make it possible to
+ - configure account - Done
+ - add addresses in the account - Done
+ - see the addresses added per customer - Done
+ - see seller information - 
+ 
+make it possible to
+ - add items to cart -
+ - delete items from cart -
+ - edit items in cart -
+ - Increase and decrease the amount of items to add
+
+make it possible to
+ - pay for the item -
+ - create an order ID automatically -
+ - see the order made - 
+
+making more details 
+ - make it possible to delete address
+ - make it possible to edit address
+
+
+Seller Accounts Dashboard.
+- make it possible to add product
+- make it possible to edit product
+- make it possible to delete product
+- make it possible to edit profile information

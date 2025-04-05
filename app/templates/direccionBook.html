@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row mt-4">
+        <h3>Direcciones</h3>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+            {% for u in usuario %}
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                    {% csrf_token %}
+                    <Label><b>Nombre Completo</b></Label>
+                    <p>{{u.nombre}}</p>
+
+                    <label><b>Numero de Telefono</b></label>
+                    <p>{{u.telefono}}</p>
+
+                    <label><b>Nombre del Barrio</b></label>
+                    <p>{{u.barrio}}</p>
+
+                    <label><b>Información completa de la calle</b></label>
+                    <p>{{u.calle}}</p>
+
+                    <label><b>Municipio / Departamento</b></label>
+                    <p>{{u.municipio_departamento}}</p>
+
+                    <label><b>Información Adicional</b></label>
+                    <p>{{u.info_adicional}}</p>
+                    </form>
+                    <a href="{% url 'editardir' u.id %}" class="btn btn-primary">
+                        Editar
+                    </a>
+                    <a href="{% url 'eliminardireccion' u.id %}" class="btn btn-danger">
+                        Eliminar
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            
+
+
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+            <h4>Agregar nueva direccion</h4>
+
+            <form action="/agregardireccion/" method="post">
+                {%csrf_token%}
+                <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" name="nombrecompleto" id="nombrecompleto" requiered
+                        maxlength="40">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Numero de Telefono</label>
+                    <input type="text" class="form-control" name="telefono" id="telefono" requiered maxlength="10">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Municipio / Departamento</label>
+                    <input type="text" class="form-control" name="municipio" id="municipio" requiered maxlength="35">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Nombre del Barrio</label>
+                    <input type="text" class="form-control" name="barrio" id="barrio" requiered maxlength="35">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Información completa de la calle</label>
+                    <input type="text" class="form-control" name="info" id="info" requiered maxlength="35">
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputEmail1" class="form-label">Información adicional para llegar al lugar de
+                        entrega</label>
+                    <input type="text" class="form-control" name="infoadicional" id="infoadicional" requiered>
+                </div>
+                
+                <button type="submit" class="btn btn-outline-primary mt-2 mb-3">Agregar Dirección</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container d-flex justify-content-center  align-items-center">
+    
+    <form action="{% url 'act_user' %}" method="POST" class="m-4">
+
+        <h1>Actualizar Usuario</h1>
+
+        {% csrf_token %}
+
+        {{ actform.as_p }}
+
+        <button class="btn btn-outline-danger">
+            Actualizar Cuenta
+        </button>
+
+        <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+            Ir a Inicio
+        </a>
+        
+        <a href="{% url 'act_pass' %}" class="btn btn-outline-warning">
+            Actualizar Contraseña
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

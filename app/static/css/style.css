@@ -1,0 +1,118 @@
+/* ------------------------ */
+/* -------- NAVBAR -------- */
+/* ------------------------ */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.containered{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Barra de navegación */
+.navbared {
+    background-color: red;  /* Color de fondo rojo */
+    padding: 10px 0;  /* Espaciado vertical */
+}
+
+/* Estilos de la lista de navegación */
+.navbared-list {
+    list-style-type: none;  /* Elimina los puntos de la lista */
+    margin: 0;
+    padding: 0;
+    text-align: center;  /* Centra los elementos de la lista */
+}
+
+/* Estilo de los enlaces */
+.navbared-list li {
+    display: inline-block;  /* Alinea los elementos horizontalmente */
+    margin-right: 20px;  /* Espacio entre los enlaces */
+}
+
+.navbared-list li a {
+    color: black;  /* Color de texto blanco */
+    text-decoration: none;  /* Elimina subrayado */
+    font-size: 16px;  /* Tamaño de fuente */
+    padding: 10px 15px;  /* Espaciado alrededor del texto */
+    border-radius: 5px;  /* Bordes redondeados */
+    transition: background-color 0.3s;  /* Transición suave */
+}
+
+/* Efecto al pasar el mouse (hover) */
+.navbared-list li a:hover {
+    background-color: darkred;  /* Cambia el fondo cuando el mouse pasa por encima */
+}
+
+.searchedBar{
+    width: 300px;  /* Ancho del input */
+    padding: 8px;  /* Espaciado interno */
+    font-size: 14px;  /* Tamaño de la fuente */
+    border: 2px solid #ccc;  /* Borde gris */
+    border-radius: 8px;  /* Bordes redondeados */
+    background-color: #f9f9f9;  /* Fondo claro */
+    transition: border-color 0.3s ease;  /* Transición suave para el borde */
+}
+
+.botonedBuscar{
+    height: 35px;
+    width: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 1px;
+    margin: 2px;
+}
+
+.numberedCart{
+    font-size: 20px;
+    margin-left: 0px;
+}
+
+
+
+/* ------------------------ */
+/* -------- FOOTER -------- */
+/* ------------------------ */
+.footed {
+    background-color: red;  /* Color de fondo rojo */
+    padding: 0;  /* Espaciado vertical */  
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: center;
+    list-style-type: none;
+}
+
+.footed-list {
+    list-style-type: none;  /* Elimina los puntos de la lista */
+    margin: 0;
+    padding: 0;
+    text-align: center;  /* Centra los elementos de la lista */
+}
+
+.footed-list li a {
+    color: black;  /* Color de texto blanco */
+    text-decoration: none;  /* Elimina subrayado */
+    font-size: 16px;  /* Tamaño de fuente */
+    padding: 10px 15px;  /* Espaciado alrededor del texto */
+    border-radius: 5px;  /* Bordes redondeados */
+    transition: background-color 0.3s;  /* Transición suave */
+    list-style-type: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+/* ------------------------ */
+/* ------- Registro ------- */
+/* ------------------------ */
+
+.containeredRegisto {
+   background-color: aqua;
+}

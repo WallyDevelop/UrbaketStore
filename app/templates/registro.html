@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container d-flex justify-content-center  align-items-center">
+    
+    <form action="{% url 'registrarse' %}" method="POST" class="m-4">
+
+        <h1>Registrarse</h1>
+
+        {% csrf_token %}
+
+        {{ registroform.as_p }}
+
+        <button class="btn btn-outline-danger">
+            Registrarse
+        </button>
+
+        <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+            Ir a Inicio
+        </a>
+
+        <a href="{% url 'ingresar' %}" class="btn btn-outline-warning">
+            Tengo una Cuenta
+        </a>
+        
+
+    </form>
+
+</div>
+
+{% endblock %}

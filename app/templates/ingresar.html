@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container d-flex justify-content-center  align-items-center">
+    
+    <form action="" method="post" class="text-center">
+
+        <h1>Iniciar Sesión</h1>
+
+        {% csrf_token %}
+
+        {{ingresoform.as_p}}
+
+        <button class="btn btn-outline-danger">
+            Iniciar Sesión
+        </button>
+        
+        <a href="{% url 'registrarse' %}" class="btn btn-outline-primary">
+            Registrarse
+        </a>
+        
+    </form>
+
+</div>
+
+{% endblock %}

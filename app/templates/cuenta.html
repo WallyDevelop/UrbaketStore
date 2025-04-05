@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h2 class="mt-5 mb-3">Account's Holder name</h2>
+        <div class="card m-3" style="max-width: 500px;">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/caja.png' %}" class="img-fluid rounded-start" alt="..." style="width: 50px; height: 50px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="{% url 'ordenes' %}" class="text-black link-offset-2 link-underline link-underline-opacity-0"><h5 class="card-title text-black link-offset-2 link-underline link-underline-opacity-0">Ordenes</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card m-3" style="max-width: 500px;">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/tarjeta.png' %}" class="img-fluid rounded-start" alt="..." style="width: 50px; height: 50px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'pagos' %}" class="text-black link-offset-2 link-underline link-underline-opacity-0">Metodos de Pago</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card m-3" style="max-width: 500px;">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/setting.png' %}" class="img-fluid rounded-start" alt="..." style="width: 50px; height: 50px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'act_user' %}" class="text-black link-offset-2 link-underline link-underline-opacity-0">Configuración de cuenta</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card m-3" style="max-width: 500px;">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/direccion.png' %}" class="img-fluid rounded-start" alt="..." style="width: 50px; height: 50px;">
+                </div></a>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'direccion' %}" class="text-black link-offset-2 link-underline link-underline-opacity-0 ">Direcciones</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

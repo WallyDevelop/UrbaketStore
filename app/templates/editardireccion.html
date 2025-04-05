@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+<div class="d-flex justify-content-center  align-items-center">
+    
+    <form action="/editardireccion/{{direc.id}}" method="post">
+        <h4 class="mt-4">Editar direccion</h4>
+        {%csrf_token%}
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" name="nombrecompleto" value="{{ direc.nombre }}" id="nombrecompleto" requiered
+                maxlength="40">
+        </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Numero de Telefono</label>
+            <input type="text" class="form-control" name="telefono" value="{{ direc.telefono }}" id="telefono" requiered maxlength="10">
+        </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Municipio / Departamento</label>
+            <input type="text" class="form-control" name="municipio" value="{{ direc.municipio_departamento }}" id="municipio" requiered maxlength="35">
+        </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Nombre del Barrio</label>
+            <input type="text" class="form-control" name="barrio" value="{{ direc.barrio }}" id="barrio" requiered maxlength="35">
+        </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Información completa de la calle</label>
+            <input type="text" class="form-control" name="info" value="{{ direc.calle }}" id="info" requiered maxlength="35">
+        </div>
+        <div class="mb-2">
+            <label for="exampleInputEmail1" class="form-label">Información adicional para llegar al lugar de
+                entrega</label>
+            <input type="text" class="form-control" name="infoadicional" value="{{ direc.info_adicional }}" id="infoadicional" requiered>
+        </div>
+        
+        <button type="submit" class="btn btn-outline-primary mt-2 mb-3">Editar Dirección</button>
+    </form>
+
+</div>
+
+{% endblock %}

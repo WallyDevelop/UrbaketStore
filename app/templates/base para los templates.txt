@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+--- Editar aqui ---
+
+{% endblock %}
+
+
+def direcciones(request):
+    return render(request, "direccionBook.html")
