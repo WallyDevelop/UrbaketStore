@@ -2,11 +2,12 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
+<div class="container mb-4">
     <div class="text-center mt-3">
-        <h3>Productos</h3>
+        <h3>Productos</h3><br>
+        <button class="btn btn-outline-primary" id="btn-abrir-modal">Agregar Producto</button>
     </div>
-    <div class="tableresponsive">
+    <div class="tableresponsive mt-4">
         <table class="table">
             <thead class="text-center">
                 <tr class="table-danger">
@@ -15,21 +16,163 @@
                     <th>Categoria</th>
                     <th>Descipción</th>
                     <th>Diponibles</th>
+                    <th colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% for pro in pro %}
-                <tr>
-                    <td><img src="{{pro.imagen.url}}" alt="{{pro.nombre}}" style="width: 100px;"></td>
-                    <td>{{pro.nombre}}</td>
-                    <td>{{pro.categoria}}</td>
-                    <td>{{pro.descripcion}}</td>
-                    <td>{{pro.unid_Stock}}</td>
+                <tr class="text-center vertical-align-middle">
+                    <td class="tdi"><img src="{{pro.imagen.url}}" alt="{{pro.nombre}}" style="width: 100px;"></td>
+                    <td class="tdi">{{pro.nombre}}</td>
+                    <td class="tdi">{{pro.categoria}}</td>
+                    <td class="text-start tdi">{{pro.descripcion}}</td>
+                    <td class="tdi">{{pro.unid_Stock}}</td>
+                    <td class="tdi">
+                        <a href="eliminarProducto/{{pro.id}}" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                            </svg></a>
+                        <button type="button" class="btn btn-outline-dark" id="btn-editar-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-sliders2-vertical" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M0 10.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H3V1.5a.5.5 0 0 0-1 0V10H.5a.5.5 0 0 0-.5.5M2.5 12a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5m3-6.5A.5.5 0 0 0 6 6h1.5v8.5a.5.5 0 0 0 1 0V6H10a.5.5 0 0 0 0-1H6a.5.5 0 0 0-.5.5M8 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2A.5.5 0 0 0 8 1m3 9.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H14V1.5a.5.5 0 0 0-1 0V10h-1.5a.5.5 0 0 0-.5.5m2.5 1.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5" />
+                            </svg>
+                        </button>
+                    </td>
+                    <style>
+                        tr .tdi {
+                            vertical-align: middle;
+                        }
+                    </style>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+
+<dialog id="modal">
+    <form action="agregarProducto/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="cardy">
+            <h3>Agregar producto</h3>
+            <input type="text" placeholder="Nombre del producto" name="nombreproducto" id="nombreproducto" required>
+            <select name="categoriaproducto" id="categoriaproducto" class="selected">
+                {% for c in cate %}
+                <option value="{{c.nombre}}" required>
+                    {{c.nombre}}
+                </option>
+                {% endfor %}
+            </select>
+            <!-- <input type="text" placeholder="Categoria" name="categoriaproducto" id="categoriaproducto"> -->
+            <textarea placeholder="Descipción del Producto" name="descripcionproducto"
+                id="descripcionproducto" required></textarea>
+            <input type="number" placeholder="Precio" name="precioproducto" id="precioproducto" required>
+            <input type="text" placeholder="Disponible" name="dispoproducto" id="dispoproducto" required>
+            <input type="text" placeholder="Vendedor" name="vendedor" id="vendedor" required>
+            <select name="repartidor" id="repartidor" class="selected">
+                {% for d in dis %}
+                <option value="{{d.id}}" required>
+                    {{d.nombre}}
+                </option>
+                {% endfor %}
+            </select>
+            <!-- <input type="text" placeholder="Repartidor" name="repartidor" id="repartidor"> -->
+            <div class="card-body">
+                <h4 class="row justify-content-center mt-1"> Subir tu Imagen</h4>
+                <div class="row justify-content-center mt-1">
+                    <input id='file-input' type="file" class="btn btn-danger" value="x" name="imagenproducto"
+                        id="imagenproducto" required>
+                    <label for='file-input' class='btn btn-danger' style="width: 350px;">Selecciona la imagen
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-2">Guardar</button>
+            <button type="button" class="btn btn-danger mt-2" id="btn-cerrar-modal">Salir</button>
+
+        </div>
+
+    </form>
+
+    <style>
+        #modal::backdrop {
+            background-color: rgba(99, 98, 98, 0.712);
+        }
+
+        #modal {
+            border: none;
+            width: 500px;
+            padding: 60px;
+            border-radius: 8px;
+            font-size: 16px;
+
+        }
+
+        .cardy {
+            align-items: center;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .cardy input {
+            margin: 4px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .cardy textarea {
+            margin: 4px;
+            width: 350px;
+            height: 60px;
+            text-align: justify;
+        }
+
+        .imaged {
+            margin: 4px;
+        }
+
+
+        input[type=file] {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .selected {
+            width: 350px;
+            text-align: center;
+        }
+    </style>
+
+</dialog>
+
+<script>
+
+    const btnAbrirModal = document.querySelector("#btn-abrir-modal")
+    const btnCerrarModal = document.querySelector("#btn-cerrar-modal")
+    const modal = document.querySelector("#modal")
+    const btnOpenModal = document.querySelector("#btn-editar-modal")
+
+    btnAbrirModal.addEventListener("click", () => {
+        modal.showModal();
+    })
+
+    btnCerrarModal.addEventListener("click", () => {
+        modal.close();
+    })
+
+    btnOpenModal.addEventListener("click", () => {
+        modal.showModal();
+    })
+
+</script>
+
+
 
 {% endblock %}

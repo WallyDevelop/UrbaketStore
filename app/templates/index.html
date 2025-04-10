@@ -5,7 +5,7 @@
 
 <div class="row m-3 justify-content-center">
     {% for p in product %}
-    <div class="card m-2" style="width: 18rem;" >
+    <div class="card m-2" style="width: 18rem; height: 22rem;" >
         <div class="card-body">
             <a href="{% url 'detalle' p.id %}"><img src="{{p.imagen.url}}" class="card-img-top" alt="{{p.nombre}}"></a>
             <h4 class="card-title">{{p.nombre}}</h4>
