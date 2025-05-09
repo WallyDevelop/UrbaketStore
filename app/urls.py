@@ -19,5 +19,6 @@ urlpatterns = [
     path('editardireccion/<int:pk>', views.editardireccion),
     path('eliminardireccion/<int:pk>', views.eliminardireccion, name="eliminardireccion"),
     path('acerca_de/', views.acerca_de, name="acerca"),
-    path('vende_nosotros/', views.vende_nosotros, name="vende")
+    path('vende_nosotros/', views.vende_nosotros, name="vende"),
+    path('buscar/', views.buscar, name="buscar")
 ]

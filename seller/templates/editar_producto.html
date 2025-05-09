@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+
+    
+    <form action="{% url 'actualizar_producto' product_id=product.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div id="modal" class="cardy">
+            <h3>Editar Producto</h3>
+            <input type="text" placeholder="Nombre del producto" value="{{product.nombre}}" name="nombreproducto" id="nombreproducto" required>
+            <select name="categoriaproducto" id="categoriaproducto" class="selected">
+                {% for c in categori %}
+                <option value="{{ c.id }}" {% if c.id == product.categoria.id %}selected{% endif %} required>
+                    {{c.nombre}}
+                </option>
+                {% endfor %}
+            </select>
+            <textarea placeholder="Descipción del Producto" name="descripcionproducto"
+                id="descripcionproducto" required>{{product.descripcion}}</textarea>
+            <input type="number" placeholder="Precio" value="{{product.precio}}" name="precioproducto" id="precioproducto" required>
+            <input type="text" placeholder="Disponible" value="{{product.unid_Stock}}" name="dispoproducto" id="dispoproducto" required>
+            <input type="text" placeholder="Vendedor" value="{{product.vendido_por}}" name="vendedor" id="vendedor" required>
+            <select name="repartidor" id="repartidor" value="{{product.enviado_por}}" class="selected">
+                {% for d in distribuidors %}
+                <option value="{{d.id}}" {% if d.id == product.enviado_por.id %}selected{% endif %} required>
+                    {{d.nombre}} 
+                </option>
+                {% endfor %}
+            </select>
+            <div class="card-body">
+                <h4 class="row justify-content-center mt-1"> Subir tu Imagen</h4>
+                <div class="row justify-content-center mt-1">
+                    <input id='file-input imagenproducto' type="file" class="btn btn-danger" name="imagenproducto" accept="image/*">
+                    <label for='file-input' class='btn btn-danger' style="width: 350px;">Selecciona la imagen
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-2">Guardar</button>
+            <a href="{% url 'selldash' %}" type="button" class="btn btn-danger mt-2">Salir</a>
+
+        </div>
+
+    </form>
+</div>
+
+    <style>
+
+        .cardy {
+            align-items: center;
+            text-align: center;
+            font-weight: 600;
+            align-content: center;
+            border: none;
+            width: 500px;
+            padding: 60px;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: auto;
+            display: flexbox;
+        }
+
+        .cardy input {
+            margin: 4px;
+            width: 350px;
+            text-align: center;
+            align-content: center;
+        }
+
+        .cardy textarea {
+            margin: 4px;
+            width: 350px;
+            height: 60px;
+            text-align: justify;
+        }
+
+        .imaged {
+            margin: 4px;
+        }
+
+
+        input[type=file] {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .selected {
+            width: 350px;
+            text-align: center;
+        }
+
+        form{
+            align-content: center;
+        }
+    </style>
+
+
+
+{% endblock %}

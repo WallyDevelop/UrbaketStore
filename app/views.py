@@ -170,3 +170,10 @@ def acerca_de(request):
 def vende_nosotros(request):
     return render(request, "vende_nosotros.html")
 
+def buscar(request):
+    if request.method == "POST":
+        searched = request.POST["buscar"]
+        searched = producto.objects.filter(nombre__icontains=searched)
+        return render(request, "buscar.html", {'searched':searched})
+    else:
+        return render(request, "buscar.html", {'searched':searched})

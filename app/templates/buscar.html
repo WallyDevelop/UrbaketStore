@@ -2,8 +2,15 @@
 {% load static %}
 {% block content %}
 
+<div class="container mt-2">
+<h3>Resultado ...</h3>
+{% if mensaje %}
+        {{ mensaje }}
+    </div>
+{% endif %}
 <div class="row m-3 justify-content-center">
-    {% for p in product %}
+
+    {% for p in searched %}
     <div class="card m-2" style="width: 18rem; height: 22rem;" >
         <div class="card-body">
             <a href="{% url 'detalle' p.id %}"><img src="{{p.imagen.url}}" class="card-img-top" alt="{{p.nombre}}"></a>
@@ -13,7 +20,7 @@
     </div>
     {% endfor %}
 </div>
-
+</div>
 
 
 {% endblock %}

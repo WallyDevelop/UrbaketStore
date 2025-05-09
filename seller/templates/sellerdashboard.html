@@ -33,13 +33,13 @@
                                 <path
                                     d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
                             </svg></a>
-                        <button type="button" class="btn btn-outline-dark" id="btn-editar-modal">
+                        <a href="editarProducto/{{pro.id}}" class="btn btn-outline-dark" id="btn-editar-modal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-sliders2-vertical" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M0 10.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H3V1.5a.5.5 0 0 0-1 0V10H.5a.5.5 0 0 0-.5.5M2.5 12a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5m3-6.5A.5.5 0 0 0 6 6h1.5v8.5a.5.5 0 0 0 1 0V6H10a.5.5 0 0 0 0-1H6a.5.5 0 0 0-.5.5M8 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2A.5.5 0 0 0 8 1m3 9.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H14V1.5a.5.5 0 0 0-1 0V10h-1.5a.5.5 0 0 0-.5.5m2.5 1.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-2a.5.5 0 0 0-.5-.5" />
                             </svg>
-                        </button>
+                        </a>
                     </td>
                     <style>
                         tr .tdi {
@@ -58,7 +58,7 @@
         {% csrf_token %}
 
         <div class="cardy">
-            <h3>Agregar producto</h3>
+            <h3>Agregar Producto</h3>
             <input type="text" placeholder="Nombre del producto" name="nombreproducto" id="nombreproducto" required>
             <select name="categoriaproducto" id="categoriaproducto" class="selected">
                 {% for c in cate %}
@@ -67,7 +67,6 @@
                 </option>
                 {% endfor %}
             </select>
-            <!-- <input type="text" placeholder="Categoria" name="categoriaproducto" id="categoriaproducto"> -->
             <textarea placeholder="Descipción del Producto" name="descripcionproducto"
                 id="descripcionproducto" required></textarea>
             <input type="number" placeholder="Precio" name="precioproducto" id="precioproducto" required>
@@ -80,7 +79,6 @@
                 </option>
                 {% endfor %}
             </select>
-            <!-- <input type="text" placeholder="Repartidor" name="repartidor" id="repartidor"> -->
             <div class="card-body">
                 <h4 class="row justify-content-center mt-1"> Subir tu Imagen</h4>
                 <div class="row justify-content-center mt-1">
@@ -152,26 +150,7 @@
 
 </dialog>
 
-<script>
 
-    const btnAbrirModal = document.querySelector("#btn-abrir-modal")
-    const btnCerrarModal = document.querySelector("#btn-cerrar-modal")
-    const modal = document.querySelector("#modal")
-    const btnOpenModal = document.querySelector("#btn-editar-modal")
-
-    btnAbrirModal.addEventListener("click", () => {
-        modal.showModal();
-    })
-
-    btnCerrarModal.addEventListener("click", () => {
-        modal.close();
-    })
-
-    btnOpenModal.addEventListener("click", () => {
-        modal.showModal();
-    })
-
-</script>
 
 
 
