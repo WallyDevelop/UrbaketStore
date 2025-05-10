@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from app.models import producto, categorias, distribuidor
 from .models import seller
+from django.contrib.auth import authenticate, login, logout
+from django import forms 
+from .forms import SellerRegistrationForm, ChangePasswordSeller, UpdateUserFormSeller
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 def sellerdashboard(request):
@@ -113,4 +118,49 @@ def actualizar_Producto(request, product_id):
 
         return redirect('/seller')  # Redirige a la página de vendedor o a donde sea necesario"""
 
-  
+def registro_vendedor(request):
+    registroseller = SellerRegistrationForm()
+    if request.method=="POST":
+        registroseller = SellerRegistrationForm(request.POST)
+        if registroseller.is_valid():
+            registroseller.save()
+            username = registroseller.cleaned_data["username"]
+            password = registroseller.cleaned_data["password1"]
+            # Ingresamos
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return render(request, 'sellerdashboard.html')
+    else:
+        return render(request, "registro_vendedor.html", {"registroseller": registroseller})
+    
+def ingreso_vendedor(request):
+    if request.method == 'GET':
+        return render(request, 'ingreso_vendedor.html', {'ingresovendedorform': AuthenticationForm})
+    else:
+        user=authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is None:
+            return redirect('registro_vendedor')
+        else:
+            login(request,user)
+            return render(request, "sellerdashboard.html")
+
+def actualizarte(request):
+    return render(request, "actualizar_vendedor.html")
+
+def actualizar_vendedor(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        actsellform = UpdateUserFormSeller(request.POST or None, instance=current_user)
+
+        if actsellform.is_valid():
+            actsellform.save()
+            
+            login(request, current_user)
+            return redirect('selldash')
+        return render (request, "actualizar_vendedor.html", {"actsellform": actsellform})
+    else:
+        return redirect('selldash')
+
+
+def contrasena_vendedor(request):
+    pass
