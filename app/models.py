@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from seller.models import seller
+
 
 class cliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -42,7 +42,7 @@ class producto(models.Model):
     descripcion = models.TextField(max_length=350)
     precio = models.IntegerField()
     unid_Stock = models.CharField(max_length=50)
-    vendido_por = models.CharField(max_length=50)
+    vendido_por = models.CharField(max_length=50, default="", null=True)
     enviado_por = models.ForeignKey(distribuidor, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to="productos/", null=True)
     

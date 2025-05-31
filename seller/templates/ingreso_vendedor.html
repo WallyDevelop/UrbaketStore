@@ -4,19 +4,21 @@
 
 <div class="container d-flex justify-content-center  align-items-center">
     
-    <form action="" method="post" class="text-center">
+    <form action="" method="POST" class="text-center">
 
         <h1>Iniciar Sesión Vendedor</h1>
 
         {% csrf_token %}
 
-        {{ingresovendedorform.as_p}}
+        <input type="text" placeholder="Nombre de usuario" name="usuario" required class="form-control mb-3">
 
-        <button class="btn btn-outline-danger">
+        <input type="password" placeholder="Contraseña" name="contasena" required class="form-control mb-3">
+
+        <button type="submit" class="btn btn-outline-danger">
             Iniciar Sesión
         </button>
         
-        <a href="{% url 'registro_vendedor' %}" class="btn btn-outline-primary">
+        <a href="{% url 'formulario' %}" class="btn btn-outline-primary">
             Registrarse 
         </a><br><br>
         

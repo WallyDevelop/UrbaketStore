@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import carrito, producto, cliente, ordenes, categorias, direccion, distribuidor
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+
 
 # Register your models here.
 admin.site.register(carrito)
@@ -10,6 +11,7 @@ admin.site.register(categorias)
 admin.site.register(direccion)
 admin.site.register(distribuidor)
 admin.site.register(cliente)
+admin.site.register(Permission)
 
 #Mezclamos informacion de cliente y usuarios
 class ProfileInLine(admin.StackedInline):

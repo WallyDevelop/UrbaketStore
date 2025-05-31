@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container d-flex justify-content-center  align-items-center">
+
+        
+
+        <form method="POST" class="m-4">
+
+            <h1>Registrarse Como Vendedor</h1>
+
+            {% csrf_token %}
+            
+            {{form.as_p}}
+
+            <button type="submit" class="btn btn-outline-danger">Registrarse</button>
+
+            <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+                Ir a Inicio
+            </a>
+
+            <a href="{% url 'ingreso_vendedor' %}" class="btn btn-outline-warning">
+                Tengo una Cuenta
+            </a>
+        </form>
+
+</div>
+
+{% endblock %}

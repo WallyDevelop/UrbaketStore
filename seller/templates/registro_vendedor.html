@@ -3,29 +3,39 @@
 {% block content %}
 
 <div class="container d-flex justify-content-center  align-items-center">
-    
-    <form action="{% url 'registro_vendedor' %}" method="POST" class="m-4">
 
-        <h1>Registrarte como vendedor</h1>
-
-        {% csrf_token %}
-
-        {{ registroseller.as_p }}
-
-        <button class="btn btn-outline-danger">
-            Registrarse
-        </button>
-
-        <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
-            Ir a Inicio
-        </a>
-
-        <a href="{% url 'ingreso_vendedor' %}" class="btn btn-outline-warning">
-            Tengo una Cuenta
-        </a>
         
 
-    </form>
+        <form method="POST" action="{% url 'registrarvendedor' %}" class="m-4">
+
+            <h1>Registrarse Como Vendedor</h1>
+
+            {% csrf_token %}
+            
+            <input type="text" placeholder="Nombre de la empresa" name="empresa" required class="form-control mb-3">
+
+            <input type="text" placeholder="Correo de la empresa" name="correo" required class="form-control mb-3">
+
+            <input type="text" placeholder="Numero de telefono" name="numero" required class="form-control mb-3">
+
+            <input type="text" placeholder="Direccion de la empresa" name="direccion" required class="form-control mb-3">
+
+            <input type="text" placeholder="Representante legal" name="representante" required class="form-control mb-3">
+
+            <input type="text" placeholder="Nombre de usuario" name="usuario" required class="form-control mb-3">
+
+            <input type="password" placeholder="Contraseña" name="contrasena" required class="form-control mb-3">
+
+            <button type="submit" class="btn btn-outline-danger">Registrarse</button>
+
+            <a href="{% url 'inicio' %}" class="btn btn-outline-primary">
+                Ir a Inicio
+            </a>
+
+            <a href="{% url 'ingreso_vendedor' %}" class="btn btn-outline-warning">
+                Tengo una Cuenta
+            </a>
+        </form>
 
 </div>
 

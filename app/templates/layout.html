@@ -26,15 +26,15 @@
                     <li>
                         <a href="/" class="fs-3 fw-bold">Urbaket Store</a>
                     </li>
-                    <li><a href="{% url 'direccion' %}">Direccion</a></li>
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'direccion' %}">Direccion</a></li>
                     <li><a href="{% url 'cuenta' %}">Cuenta</a></li>
                     {% endif %}
                     
                     <li>
                     <form  method="POST" action="{% url 'buscar' %}">
                         {%csrf_token%}
-                        <input class="searchedBar" type="text" placeholder="Ingrese el nombre del productos" name="buscar">
+                        <input class="searchedBar" type="text" placeholder="Nombre del Producto" name="buscar">
                         <button class="botonedBuscar" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
@@ -93,7 +93,7 @@
                 <ul>
                     <li><a href="{% url 'acerca' %}">Acerca de</a></li>
                     <li><a href="{% url 'vende' %}">Vende con nosotros</a></li>
-                    <li><a href="{% url 'ingreso_vendedor' %}">Ingreso Vendedor</a></li>
+                    <li><a href="#">Ingreso Vendedor</a></li>
                 </ul>
             </div>
         </footer>
