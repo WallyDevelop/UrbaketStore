@@ -10,7 +10,7 @@ from django import forms
 from .forms import SignUpForm, UpdateUserForm, ChangePassword
 import json
 from cart.cart import Cart
-
+from django.contrib import messages
 
 # Create your views here.
 def registrarse(request):
@@ -24,6 +24,7 @@ def registrarse(request):
             # Ingresamos
             user = authenticate(username=username, password=password)
             login(request, user)
+            messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has creado a tu cuenta correctamente !")
             return redirect('inicio')
     else:
         return render(request, 'registro.html', {'registroform' : registroform})
@@ -37,6 +38,7 @@ def actualizar_usuario(request):
             actform.save()
             
             login(request, current_user)
+            messages.add_message(request=request, level=messages.INFO, message="¡ Has actualizado a tu cuenta correctamente !")
             return redirect('inicio')
         return render (request, "actualizar_user.html", {"actform": actform})
     else:
@@ -49,11 +51,13 @@ def actualizar_pass(request):
             contraform =ChangePassword(current_user, request.POST)
             if contraform.is_valid():
                 contraform.save()
+                messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has cambiado tu contraseña correctamente !")
                 login(request, current_user)
                 return redirect('inicio')
             else:
                 for error in list(contraform.errors.values()):
-                    pass
+                    messages.add_message(request=request, level=messages.ERROR, message="¡ No ha sido posible cambiar tu contraseña, verifica que los datos sean iguales !")
+                    return redirect('act_pass')
         else:
             contraform = ChangePassword(current_user)
             return render(request, 'actualizar_pass.html', {'contraform':contraform})
@@ -66,6 +70,7 @@ def ingresar(request):
     else:
         user=authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
+            messages.add_message(request=request, level=messages.ERROR, message="La cuenta que has ingresado no existe, ¡ Create una nueva !")
             return redirect('registrarse')
         else:
             login(request,user)
@@ -77,11 +82,12 @@ def ingresar(request):
                 cart = Cart(request)
                 for key, value in converted_cart.items(): # Cuando recorremos un diccionario en Python agregamos el .items()
                     cart.db_add(product=key, quantity=value)
-
+            messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has ingresado a tu cuenta correctamente !")
             return redirect('inicio')
 
 def salir(request):
     logout(request)
+    messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has cerrado seción correctamente !")
     return redirect('inicio')
 
 def index(request):
@@ -121,7 +127,7 @@ def agregardireccion(request):
         municipio_departamento=municipio_departamento, 
         info_adicional=info_adicional
         )
-
+    messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has agregado una nueva dirección a tu cuenta !")
     return redirect('direccion')
 
 def ediciondireccion(request, pk):
@@ -148,6 +154,7 @@ def editardireccion(request, pk):
 
     cliente = request.user
     usuario = direccion.objects.filter(cliente=cliente)
+    messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has editado una dirección de tu cuenta de manera correcta!")
     return render(request, "direccionBook.html", {"usuario":usuario})
 
 def eliminardireccion(request, pk):
@@ -156,6 +163,7 @@ def eliminardireccion(request, pk):
 
     cliente = request.user
     usuario = direccion.objects.filter(cliente=cliente)
+    messages.add_message(request=request, level=messages.SUCCESS, message="¡ Has eliminado una dirección de tu cuenta de manera correcta!")
     return render(request, "direccionBook.html", {"usuario":usuario})
 
 def pagos(request):
