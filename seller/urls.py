@@ -7,5 +7,6 @@ urlpatterns = [
     path('eliminarProducto/<int:pk>/', views.eliminarProducto),
     path('editarProducto/<int:pk>', views.editarProducto),
     path('actualizarProducto/<int:product_id>', views.actualizar_Producto, name='actualizar_producto'),
+    path('agregarDatos/', views.categoria_transportador, name='cateytranspo')
   
 ]

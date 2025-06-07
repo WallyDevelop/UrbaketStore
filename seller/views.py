@@ -47,6 +47,7 @@ def editarProducto(request, pk):
     return render(request, 'editar_producto.html', {"product": product, "categori":categori, "distribuidors":distribuidors})
 
 def actualizar_Producto(request, product_id):
+
     nombre = request.POST['nombreproducto']
     categoria_nombre = request.POST['categoriaproducto']
     categoria = categorias.objects.get(nombre=categoria_nombre)
@@ -124,3 +125,15 @@ def actualizar_Producto(request, product_id):
 
 
     return render(request, "actualizar_vendedor.html")
+
+def categoria_transportador(request):
+    nombrecate = request.POST['categoria']
+    nombretrans = request.POST['transportador']
+
+    cate = categorias.objects.create(
+        nombrecate = nombrecate
+    )
+
+    trans = distribuidor.objects.create(
+        nombretrans = nombretrans
+    )

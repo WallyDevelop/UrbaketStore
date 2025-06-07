@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+
+    
+    <form action="agregarDatos/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div id="modal" class="cardy">
+            
+            <h3>Categoria</h3>
+            <input type="text" placeholder="categoria" name="categoria" id="categoria" required>
+            <h3>Transportador</h3>
+            <input type="text" placeholder="transportador" name="transportador" id="transportador" required>
+            
+            <button class="btn btn-primary mt-2">Agregar</button>
+
+        </div>
+
+    </form>
+</div>
+
+    
+
+{% endblock %}

@@ -7,9 +7,7 @@
         <h3>Productos</h3><br>
         {% if user.is_authenticated %}
         <button class="btn btn-outline-primary" id="btn-abrir-modal">Agregar Producto</button>
-        <button class="btn btn-outline-primary" id="btn-abrir-modal">Finalizar Sesion</button>
-
-
+        <button class="btn btn-outline-primary" id="btn-abrir-modal">Agregar Categoria y Transportador</button>
     </div>
     
     <div class="tableresponsive mt-4">
@@ -70,7 +68,7 @@
             <input type="text" placeholder="Nombre del producto" name="nombreproducto" id="nombreproducto" required>
             <select name="categoriaproducto" id="categoriaproducto" class="selected">
                 {% for c in cate %}
-                <option value="{{c.nombre}}" required>
+                <option value="{{c.nombre}}" required> 
                     {{c.nombre}}
                 </option>
                 {% endfor %}
