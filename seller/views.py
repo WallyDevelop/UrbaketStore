@@ -127,18 +127,17 @@ def actualizar_Producto(request, product_id):
     return render(request, "actualizar_vendedor.html")
 
 def categoria_transportador(request):
-    nombrecate = request.POST['categoria']
-    nombretrans = request.POST['transportador']
+    if request.method == "POST":
+        nombrecate = request.POST.get('categoria')
+        nombretrans = request.POST.get('transportador')
 
-    cate = categorias.objects.create(
-        nombrecate = nombrecate
-    )
+        cate = categorias.objects.create(nombrecate=nombrecate)
+        trans = distribuidor.objects.create(nombretrans=nombretrans)
 
-    trans = distribuidor.objects.create(
-        nombretrans = nombretrans
-    )
-
-    return render(request, "cateytrans.html")
+        # Redirige después de guardar para evitar el reenvío del formulario
+        return redirect('selldash')  # asegúrate de que esta URL exista
+    else:
+        return render(request, "cateytrans.html")
 
 def cateytrans(request):
     return render(request, "cateytrans.html")

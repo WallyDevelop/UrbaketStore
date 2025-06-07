@@ -2,21 +2,19 @@
 {% load static %}
 {% block content %}
 
-<div class="container d-flex justify-content-center  align-items-center">
-
-    
-    <form action="{% url 'cateytranspo' %}" method="POST">
+<div class="container d-flex justify-content-center align-items-center">
+    <form action="{% url 'categoria_transportador' %}" method="POST">
         {% csrf_token %}
 
-            <h2>Agregar Datos</h2><br>
+        <h2>Agregar Datos</h2><br>
 
-            <h4>Categoria</h4>
-            <input type="text" placeholder="Categoria" name="categoria" id="categoria" required>
-            <h4>Transportador</h4>
-            <input type="text" placeholder="Transportador" name="transportador" id="transportador" required>
+        <h4>Categoria</h4>
+        <input type="text" placeholder="Categoria" name="categoria" id="categoria" required>
 
-            <button type="submit" class="btn btn-success mt-2">Agregar</button>
+        <h4>Transportador</h4>
+        <input type="text" placeholder="Transportador" name="transportador" id="transportador" required>
 
+        <button type="submit" class="btn btn-success mt-2">Agregar</button>
     </form>
 </div>
 
