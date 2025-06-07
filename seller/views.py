@@ -138,7 +138,7 @@ def categoria_transportador(request):
         nombretrans = nombretrans
     )
 
-    return redirect("/seller")
+    return render(request, "cateytrans.html")
 
 def cateytrans(request):
     return render(request, "cateytrans.html")
