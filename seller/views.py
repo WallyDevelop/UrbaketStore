@@ -137,3 +137,6 @@ def categoria_transportador(request):
     trans = distribuidor.objects.create(
         nombretrans = nombretrans
     )
+
+def cateytrans(request):
+    return render(request, "cateytrans.html")
