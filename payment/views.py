@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from cart.cart import Cart
 from app.models import direccion
+
 # Create your views here.
 def checkout(request):
     cart = Cart(request)
@@ -14,4 +15,6 @@ def checkout(request):
 
 def payment_success(request):
     return render(request, "payment/payment_success.html")
+
+# Import Paypal Stuff 
 
