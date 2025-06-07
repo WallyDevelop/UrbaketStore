@@ -2,10 +2,10 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
+<div class="container d-flex justify-content-center  align-items-center">
 
     
-    <form action="agregarDatos/" method="POST" enctype="multipart/form-data">
+    <form action="/agregarDatos/" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div id="modal" class="cardy">
@@ -15,7 +15,7 @@
             <h3>Transportador</h3>
             <input type="text" placeholder="transportador" name="transportador" id="transportador" required>
             
-            <button class="btn btn-primary mt-2">Agregar</button>
+            <button type="submit" class="btn btn-primary mt-2">Agregar</button>
 
         </div>
 
