@@ -29,7 +29,7 @@ SECRET_KEY = 'khajsugoashfua63212..544!$$%/$&$dfbgkdfl34%&#$&3sosdhiks5648sdgf'
 DEBUG = True
 
 ALLOWED_HOSTS = ['urbaketstore-production.up.railway.app', 'https://urbaketstore-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['urbaketstore-production.up.railway.app', 'https://urbaketstore-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://urbaketstore-production.up.railway.app']
 
 # Application definition
 
