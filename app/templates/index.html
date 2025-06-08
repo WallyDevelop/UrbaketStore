@@ -12,7 +12,7 @@
     {% for p in product %}
     <div class="card m-2" style="width: 18rem; height: 22rem;" >
         <div class="card-body">
-            <a href="{% url 'detalle' p.id %}"><img src="{% static {{p.imagen.url}} %}" class="card-img-top" alt="{{p.nombre}}"></a>
+            <a href="{% url 'detalle' p.id %}"><img src="{{p.imagen.url}}" class="card-img-top" alt="{{p.nombre}}"></a>
             <h4 class="card-title">{{p.nombre}}</h4>
             <h4><a href="{% url 'detalle' p.id %}" class="text-black link-offset-2 link-underline link-underline-opacity-0 ">Col ${{p.precio}} </a></h4>
         </div>        
